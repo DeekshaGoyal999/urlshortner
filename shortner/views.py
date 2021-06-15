@@ -8,11 +8,15 @@ def index(request):
 
 def create(request):
     if request.method=='POST':
-        link= request.Post['link']
+        # import ipdb;
+        # ipdb.set_trace() 
+        link= request.POST['link']
         uid= str(uuid.uuid4())[:5]
         new_url= Url(link=link,uuid=uid)
         new_url.save()
         return HttpResponse(uid)
-def go(request):
-    url_details= Url.objects.get(uuid=pk)
-    return redirect('https://' +url_deatsils.link)
+def go(request, pk):
+    # import ipdb;
+    # ipdb.set_trace() 
+    url_details = Url.objects.get(uuid=pk)
+    return redirect(url_details.link)
